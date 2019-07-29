@@ -36,19 +36,11 @@ const NavBar = () => {
       backgroundColor: "#00CB79",
       textDecoration: "none",
       width: "150px",
-      margin: "2px 0",
+      margin: "2px 0 2px 40px",
       border: "solid 1px transparent",
       borderRadius: "20px",
       fontSize: "20px",
       fontWeight: "bold"
-    
-            // padding: 0.5em 1em;
-            // color: #ffffff;
-            // font: inherit;
-            // font-size: 20px;
-            // font-weight: bold;
-            // outline: none;
-            // cursor: pointer;
     };
 
     const iStyle = {
@@ -57,27 +49,32 @@ const NavBar = () => {
       boxShadow: "0 2px 6px 0 rgba(0,0,0,0.2)",
       textAlign: "Center",
       justifyContent: 'Center',
-      alignItems: 'Center',
-      color: 'white'
-    
-            // padding: 0.5em 1em;
-            // color: #ffffff;
-            // font: inherit;
-            // font-size: 20px;
-            // font-weight: bold;
-            // outline: none;
-            // cursor: pointer;
+      alignItems: 'Center !important',
+      color: 'white',
     };
 
     const cStyle = {
       textAlign: "Center",
       justifyContent: 'Center',
-      alignItems: 'Center'
+      alignItems: 'Center',
+      textAlign: 'Center'
     }
 
     const aStyle = {
       color: 'white',
-      borderStyle: 'none'
+      borderStyle: 'none',
+      width: '125px',
+      textAlign: 'Center'
+    }
+
+    const sStyle = {
+      display: "block",
+      width: "700px",
+      alignItems: 'Center',
+      textAlign: 'Center !important',
+      justifyContent: 'Center !important',
+      margin: "0 auto",
+      maxWidth: "700px"
     }
 
 
@@ -111,12 +108,17 @@ const NavBar = () => {
                   Get Started
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <div style={sStyle} className="nav-container__title">
+                  <h1>Water My Plants</h1>
+              </div>
+              </NavItem>
             </Nav>
-            <Nav>
-            <NavItem className="nav-container__title">
+            {/* <Nav>
+            <div style={sStyle} className="nav-container__title">
                 <h1>Water My Plants</h1>
-            </NavItem>
-            </Nav>
+            </div>
+            </Nav> */}
             <Nav className="d-none d-md-block" navbar>
               {!isAuthenticated && (
                 <NavItem>
