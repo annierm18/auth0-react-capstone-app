@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import WaterPlant from './waterPlant';
+import { Container, Row, Col } from "reactstrap";
 
 export default class PlantItem extends Component {
     constructor(props) {
@@ -20,35 +21,48 @@ export default class PlantItem extends Component {
     const { img, humidity, waterLevel, name, index, temperature, sunlight, soilMoisture } = this.props.plant;
     const showBack = this.state.showBack;
 
+    const pStyle = {
+        width: "220px"
+      };
+
+      const iStyle = {
+        width: "220px",
+        paddingTop: "30px"
+      };
+
     return (
-            <div key={index} onClick={this.onItemClickHandler} className='plant-items-wrapper__plant'>
+            <Container onClick={this.onItemClickHandler} className='plant-items-wrapper__plant'>
                 { showBack ? 
-                    <div className='plant-items-wrapper__plant__back'>
-                        <div className='plant-items-wrapper__plant__back__humidity'>
+                    <Row style={iStyle}  className='plant-items-wrapper__plant__back'>
+                        <Col style={iStyle} md={2}>
+                        <div style={iStyle} className='plant-items-wrapper__plant__back__humidity'>
                             {humidity}
                         </div>
-                        <div className='plant-items-wrapper__plant__back__water-level'>
+                        <div style={iStyle} className='plant-items-wrapper__plant__back__water-level'>
                             {waterLevel}
                         </div>
-                        <div className='plant-items-wrapper__plant__back__temperature'>
+                        <div style={iStyle} className='plant-items-wrapper__plant__back__temperature'>
                             {temperature}
                         </div>
-                        <div className='plant-items-wrapper__plant__back__sunlight'>
+                        <div style={iStyle} className='plant-items-wrapper__plant__back__sunlight'>
                             {sunlight}
                         </div>
-                        <div className='plant-items-wrapper__plant__back__soil-moisture'>
+                        <div style={iStyle} className='plant-items-wrapper__plant__back__soil-moisture'>
                             {soilMoisture}
                         </div>
                         {/* <WaterPlant className='water-plant'/> */}
-                    </div>
+                        </Col>
+                    </Row>
 
                 :
-                    <div key={index} onClick={this.onItemClickHandler} className='plant-items-wrapper__plant__front'>
-                        <h1 className='plant-items-wrapper__plant__front__plant-name'>{name}</h1> 
+                    <Row key={index} onClick={this.onItemClickHandler} className='plant-items-wrapper__plant__front'>
+                        <Col md={2}>
+                        <h1 style={pStyle} className='plant-items-wrapper__plant__front__plant-name'>{name}</h1> 
                         <img src={img} alt="plant" className='plant-items-wrapper__plant__front__plant-image'/>
-                    </div>
+                        </Col>
+                    </Row>
                 }    
-            </div>   
+            </Container>   
         )
     }
 }

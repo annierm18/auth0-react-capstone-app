@@ -32,17 +32,66 @@ const NavBar = () => {
       returnTo: window.location.origin
     });
 
+    const pStyle = {
+      backgroundColor: "#00CB79",
+      textDecoration: "none",
+      width: "150px",
+      margin: "2px 0",
+      border: "solid 1px transparent",
+      borderRadius: "20px",
+      fontSize: "20px",
+      fontWeight: "bold"
+    
+            // padding: 0.5em 1em;
+            // color: #ffffff;
+            // font: inherit;
+            // font-size: 20px;
+            // font-weight: bold;
+            // outline: none;
+            // cursor: pointer;
+    };
+
+    const iStyle = {
+      backgroundColor: "#333",
+      body: "#333",
+      boxShadow: "0 2px 6px 0 rgba(0,0,0,0.2)",
+      textAlign: "Center",
+      justifyContent: 'Center',
+      alignItems: 'Center',
+      color: 'white'
+    
+            // padding: 0.5em 1em;
+            // color: #ffffff;
+            // font: inherit;
+            // font-size: 20px;
+            // font-weight: bold;
+            // outline: none;
+            // cursor: pointer;
+    };
+
+    const cStyle = {
+      textAlign: "Center",
+      justifyContent: 'Center',
+      alignItems: 'Center'
+    }
+
+    const aStyle = {
+      color: 'white',
+      borderStyle: 'none'
+    }
+
 
   return (
-    <div className="nav-container">
-      <Navbar color="light" light expand="md">
-        <Container className="nav-container__container">
+    <div style={iStyle} className="nav-container">
+      <Navbar style={iStyle} light expand="md">
+        <Container style={cStyle} className="nav-container__container">
           {/* <NavbarBrand className="logo" /> */}
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
+          <NavbarToggler style={cStyle} onClick={toggle} />
+          <Collapse style={cStyle} isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink
+                  style={aStyle} 
                   tag={RouterNavLink}
                   to="/"
                   exact
@@ -53,6 +102,7 @@ const NavBar = () => {
               </NavItem>
               <NavItem>
                 <NavLink
+                  style={aStyle} 
                   tag={RouterNavLink}
                   to="/get-started"
                   exact
@@ -72,7 +122,7 @@ const NavBar = () => {
                 <NavItem>
                   <Button
                     id="qsLoginBtn"
-                    color="primary"
+                    style={pStyle}
                     className="btn-margin"
                     onClick={() => loginWithRedirect({})}
                   >
@@ -124,7 +174,7 @@ const NavBar = () => {
                 <NavItem>
                   <Button
                     id="qsLoginBtn"
-                    color="primary"
+                    style={pStyle}
                     block
                     onClick={() => loginWithRedirect({})}
                   >

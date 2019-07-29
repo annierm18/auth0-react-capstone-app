@@ -1,0 +1,17 @@
+.account {
+    justify-items: center;
+    justify-content: center;
+    align-content: center;	
+    justify-content: space-evenly;
+
+    &__plant-items-wrapper {
+        display: flex !important;
+        justify-items: center;
+        justify-content: center;
+        align-content: center;	
+        justify-content: space-evenly;
+        text-align: center;
+        align-items: center;
+    }
+}
+

@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 // import axios from "axios";
 
+import { Container, Row, Col } from "reactstrap";
 import PlantItem from "./PlantItem";
+
+
 // import WaterPlant from './waterPlant';
 import img from '../assets/agave_2_cropped.jpg';
 
@@ -93,6 +96,7 @@ export default class PlantsContainer extends Component {
 
 
 
+
   plantItems() {
     return this.state.plants.map((plant, index) => {
       return (
@@ -108,11 +112,17 @@ export default class PlantsContainer extends Component {
   }
 
   render() {
+    const pStyle = {
+        textAlign: 'center',
+        alignContent: 'center',
+        alignItems: 'cemter',
+        justifyContent: 'center'
+      };
 
     return (
-        <div key={this.state.plants.name} className='plant-items-wrapper'>
+        <Row style={pStyle} key={this.state.plants.name} className='plant-items-wrapper'>
                 { this.plantItems() }
-      </div>
+        </Row>
 
 
     );
