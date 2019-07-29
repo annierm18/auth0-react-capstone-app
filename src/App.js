@@ -7,7 +7,9 @@ import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Home from "./views/Home";
+import GetStarted from "./views/getStarted";
 import Profile from "./views/Profile";
+import Account from "./views/Account";
 import { useAuth0 } from "./react-auth0-spa";
 
 // styles
@@ -25,16 +27,18 @@ const App = () => {
   }
 
   return (
-    <Router>
+    <Router >
       <div id="app" className="d-flex flex-column h-100">
         <NavBar />
         <Container className="flex-grow-1 mt-5">
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/get-started" exact component={GetStarted} />
             <PrivateRoute path="/profile" component={Profile} />
+            <PrivateRoute path="/account" component={Account} />
           </Switch>
         </Container>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );

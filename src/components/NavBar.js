@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "../navbar.scss";
+
 import {
   Collapse,
   Container,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
+  // NavbarBrand,
   Nav,
   NavItem,
   NavLink,
@@ -30,11 +32,12 @@ const NavBar = () => {
       returnTo: window.location.origin
     });
 
+
   return (
     <div className="nav-container">
       <Navbar color="light" light expand="md">
-        <Container>
-          <NavbarBrand className="logo" />
+        <Container className="nav-container__container">
+          {/* <NavbarBrand className="logo" /> */}
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
@@ -48,6 +51,21 @@ const NavBar = () => {
                   Home
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink
+                  tag={RouterNavLink}
+                  to="/get-started"
+                  exact
+                  activeClassName="router-link-exact-active"
+                >
+                  Get Started
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <Nav>
+            <NavItem className="nav-container__title">
+                <h1>Water My Plants</h1>
+            </NavItem>
             </Nav>
             <Nav className="d-none d-md-block" navbar>
               {!isAuthenticated && (
@@ -81,6 +99,14 @@ const NavBar = () => {
                       activeClassName="router-link-exact-active"
                     >
                       <FontAwesomeIcon icon="user" className="mr-3" /> Profile
+                    </DropdownItem>
+                    <DropdownItem
+                      tag={RouterNavLink}
+                      to="/account"
+                      className="dropdown-profile"
+                      activeClassName="router-link-exact-active"
+                    >
+                      <FontAwesomeIcon icon="user" className="mr-3" /> Account
                     </DropdownItem>
                     <DropdownItem
                       id="qsLogoutBtn"

@@ -1,0 +1,41 @@
+.landing {
+
+    &__button {
+        text-align: center;
+
+        &__start {
+            text-decoration: none;
+            width: 243px;
+           
+            background-color: #00CB79;
+    
+    
+            border: solid 1px transparent;
+            border-radius: 20px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+    
+            padding: 0.5em 1em;
+            color: #ffffff;
+            font: inherit;
+            font-size: 20px;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+        }
+              
+
+        &__start:hover,
+        .register-button:focus {
+            color: #00CB79;
+            border-color: currentColor;
+            background-color: white;
+        }
+
+        &__start:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
+            0 0 0 1.5px rgba(255, 105, 180, 0.5);
+        }
+    }
+}
