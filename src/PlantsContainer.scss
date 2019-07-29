@@ -1,0 +1,60 @@
+.plant-items-wrapper {
+
+    // display: grid;
+    // grid-template-rows: 1/-1;
+    // grid-template-columns: 1/-1;
+
+    // & > * {
+    //     grid-row: 1/-1;
+    //     grid-column: 1/-1;
+    // }
+
+    display: grid;
+    flex-flow: row wrap;
+    align-content: center;
+    justify-content: center;
+    padding: 0px;
+}
+
+.plant-items-wrapper {
+    padding: 0px;
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+
+    &__plant__back,
+    &__plant__front {
+        backface-visibility: hidden;
+        transition: all .3s ease;
+    }
+}
+
+.plant-items-wrapper__plant {
+    // width: 230px;
+    // margin: 20px;
+    padding: 0px;
+    font-size: 15px;
+    margin: 5px;
+
+    &__front__plant-name {
+        text-align: center;
+    }
+
+    &__front__plant-image {
+        // display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__back {
+        text-align: center;
+        padding-top: 35px;
+
+        & > * {
+        padding: 5px;
+        }
+
+        &__water-plant {
+            padding-top: 15px;
+        }
+ }
+}

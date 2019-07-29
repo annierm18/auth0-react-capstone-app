@@ -4,7 +4,9 @@ import { Container, Row, Col } from "reactstrap";
 import Highlight from "../components/Highlight";
 import Loading from "../components/Loading";
 import { useAuth0 } from "../react-auth0-spa";
+
 import PageTitle from '../components/PageTitle';
+import PlantsContainer from '../components/PlantsContainer';
 
 const Account = () => {
   const { loading, user } = useAuth0();
@@ -16,9 +18,10 @@ const Account = () => {
   return (
     <Container className="mb-5">
       <PageTitle className='get-started__title' title="Let's Get Started!"/>
-      <div className='home__content'>
+        <div className='home__content'>
             <h1>To view the health of your plants, click on their images below.</h1>
         </div>
+        <PlantsContainer className='home__plant-items-wrapper'/>
       <Row className="align-items-center account-header mb-5 text-center text-md-left">
         <Col md={2}>
           <img
