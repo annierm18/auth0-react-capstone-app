@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import axios from "axios";
 
 import { Container, Row, Col } from "reactstrap";
 import PlantItem from "./PlantItem";
@@ -15,7 +14,6 @@ export default class PlantsContainer extends Component {
     this.state = {
       pageTitle: "Welcome to my plants",
       isLoading: false,
-      data: [],
       plants: [
 
             { 
@@ -50,49 +48,63 @@ export default class PlantsContainer extends Component {
                 sunlight: 'Sunlight: sunny',
                 soilMoisture: 'Soil Moisture: dry',
                 waterLevel: 'Water Level: medium',
-            },
-            { 
-                id: 3,
-                name: 'Plant #4',
-                sensor: 'Sensor #4',
-                img: img,
-                humidity: 'Humidity: 70%',
-                temperature: 'Temp: 80F',
-                sunlight: 'Sunlight: sunny',
-                soilMoisture: 'Soil Moisture: dry',
-                waterLevel: 'Water Level: medium-high',
-            },
-            { 
-                id: 4,
-                name: 'Plant #5',
-                sensor: 'Sensor #5',
-                img: img,
-                humidity: 'Humidity: 60%',
-                temperature: 'Temp: 100F',
-                sunlight: 'Sunlight: sunny',
-                soilMoisture: 'Soil Moisture: over-saturated',
-                waterLevel: 'Water Level: high',
-            },
+            }
         ]
     };
 
         this.plantItems = this.plantItems.bind(this);
-
+        // this.getPlantItems = this.getPlantItems.bing(this);
   }
 
 
-//   getPlantItems() {
-//     axios
-//       .get("https://jordan.devcamp.space/portfolio/portfolio_items")
-//       .then(response => {
-//         this.setState({
-//           data: response.data.data
-//         });
-//       })
-//       .catch(error => {
-//         console.log(error);
-//       });
-//   }
+  getPlantItems() {
+    var API_KEY = "f20ad4cd3e20e788c1a92aa130ffac72",
+        M2X = require("m2x"),
+        m2xClient = new M2X(API_KEY);
+        var DEVICE_ID= "cb3eed668dcb1cdf4e3b42df2c4fa00e";
+    
+
+        // m2xClient.devices.list(function(response) {
+        //   if (response.isSuccess()) {
+        //     response.json.devices.forEach(function(device) {
+        //       console.log(device);
+        //     });
+        //   } else {
+        //       console.log(JSON.stringify(response.error()));
+        //   }
+        // });
+
+        m2xClient.devices.streamStats(DEVICE_ID,"temperature",function(response) {
+          if (response.isSuccess()) {
+         
+            console.log(response.json.stats);
+           
+          } else {
+              console.log(JSON.stringify(response.error()));
+          }
+        
+        });
+
+        m2xClient.devices.stream(DEVICE_ID,"temperature",function(response) {
+          if (response.isSuccess()) {
+         
+            console.log(response.json);
+           
+          } else {
+              console.log(JSON.stringify(response.error()));
+          }
+        });
+
+        m2xClient.devices.stream(DEVICE_ID,"temperature",function(response) {
+            if (response.isSuccess()) {
+           
+              console.log(response.json);
+             
+            } else {
+                console.log(JSON.stringify(response.error()));
+            }
+          });
+  }
 
 
 
@@ -111,6 +123,14 @@ export default class PlantsContainer extends Component {
     });
   }
 
+  componentDidMount() {
+    console.log(this.getPlantItems());
+    this.getPlantItems();
+}
+
+
+  
+
   render() {
     const pStyle = {
         textAlign: 'center',
@@ -120,11 +140,14 @@ export default class PlantsContainer extends Component {
       };
 
     return (
+        <div>
         <Row style={pStyle} key={this.state.plants.name} className='plant-items-wrapper'>
                 { this.plantItems() }
         </Row>
-
-
+        <Row>
+            { this.getPlantItems() }
+        </Row>
+        </div>
     );
   }
 }
