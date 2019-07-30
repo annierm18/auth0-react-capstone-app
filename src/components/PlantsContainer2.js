@@ -1,17 +1,11 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
 
 
 
 import {
-    Nav,
-    NavItem,
-    NavLink,
+  
     Button,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
+   
   } from "reactstrap";
 
 const PlantsContainer2 = () => {
