@@ -47,44 +47,22 @@ const NavBar = () => {
       backgroundColor: "#333",
       body: "#333",
       boxShadow: "0 2px 6px 0 rgba(0,0,0,0.2)",
-      textAlign: "Center",
-      justifyContent: 'Center',
-      alignItems: 'Center !important',
       color: 'white',
     };
-
-    const cStyle = {
-      textAlign: "Center",
-      justifyContent: 'Center',
-      alignItems: 'Center',
-      textAlign: 'Center'
-    }
 
     const aStyle = {
       color: 'white',
       borderStyle: 'none',
-      width: '125px',
-      textAlign: 'Center'
     }
-
-    const sStyle = {
-      display: "block",
-      width: "700px",
-      alignItems: 'Center',
-      textAlign: 'Center !important',
-      justifyContent: 'Center !important',
-      margin: "0 auto",
-      maxWidth: "700px"
-    }
-
 
   return (
     <div style={iStyle} className="nav-container">
       <Navbar style={iStyle} light expand="md">
-        <Container style={cStyle} className="nav-container__container">
+        <Container className="nav-container__container">
           {/* <NavbarBrand className="logo" /> */}
-          <NavbarToggler style={cStyle} onClick={toggle} />
-          <Collapse style={cStyle} isOpen={isOpen} navbar>
+        
+          <NavbarToggler onClick={toggle} />
+          <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink
@@ -108,17 +86,7 @@ const NavBar = () => {
                   Get Started
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <div style={sStyle} className="nav-container__title">
-                  <h1>Water My Plants</h1>
-              </div>
-              </NavItem>
             </Nav>
-            {/* <Nav>
-            <div style={sStyle} className="nav-container__title">
-                <h1>Water My Plants</h1>
-            </div>
-            </Nav> */}
             <Nav className="d-none d-md-block" navbar>
               {!isAuthenticated && (
                 <NavItem>
@@ -172,7 +140,7 @@ const NavBar = () => {
               )}
             </Nav>
             {!isAuthenticated && (
-              <Nav className="d-md-none" navbar>
+              <Nav style={{ backgroundColor: "#333"}} className="d-md-none" navbar>
                 <NavItem>
                   <Button
                     id="qsLoginBtn"
@@ -189,7 +157,7 @@ const NavBar = () => {
               <Nav
                 className="d-md-none justify-content-between"
                 navbar
-                style={{ minHeight: 170 }}
+                style={{ minHeight: "170", backgroundColor: "#333" }}
               >
                 <NavItem>
                   <span className="user-info">

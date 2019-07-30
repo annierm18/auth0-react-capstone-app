@@ -10,6 +10,7 @@ import Home from "./views/Home";
 import GetStarted from "./views/getStarted";
 import Profile from "./views/Profile";
 import Account from "./views/Account";
+import RegisterPlants from "./views/RegisterPlants";
 import { useAuth0 } from "./react-auth0-spa";
 
 // styles
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="/get-started" exact component={GetStarted} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/account" component={Account} />
+            <PrivateRoute path="/register-plants" component={RegisterPlants} />
           </Switch>
         </Container>
         {/* <Footer /> */}
