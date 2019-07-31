@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Row } from "reactstrap";
 import PlantItem from "./PlantItem";
+import PlantItem2 from "./PlantItem2";
 
 
 // import WaterPlant from './waterPlant';
@@ -12,10 +13,17 @@ export default class PlantsContainer extends Component {
     super(props);
 
     this.state = {
-      pageTitle: "Welcome to my plants",
-      isLoading: false,
-      plants: [
-
+        pageTitle: "Welcome to my plants",
+        isLoading: false,
+        deviceInfo: [],
+        deviceArr: [
+            {
+                img: '',
+                id: '',
+                name: ''
+            }
+        ],
+        plants: [
             { 
                 id: 0,
                 name: 'Plant #1',
@@ -53,7 +61,8 @@ export default class PlantsContainer extends Component {
     };
 
         this.plantItems = this.plantItems.bind(this);
-        // this.getPlantItems = this.getPlantItems.bing(this);
+        this.plantItems2 = this.plantItems2.bind(this);
+        // this.getPlantItems = this.getPlantItems.bind(this);
   }
 
 
@@ -61,53 +70,55 @@ export default class PlantsContainer extends Component {
     var API_KEY = "f20ad4cd3e20e788c1a92aa130ffac72",
         M2X = require("m2x"),
         m2xClient = new M2X(API_KEY);
-        var DEVICE_ID= "cb3eed668dcb1cdf4e3b42df2c4fa00e";
-    
+        // var DEVICE_ID= "cb3eed668dcb1cdf4e3b42df2c4fa00e";
+        var arr = []
 
-        // m2xClient.devices.list(function(response) {
-        //   if (response.isSuccess()) {
-        //     response.json.devices.forEach(function(device) {
-        //       console.log(device);
-        //     });
-        //   } else {
-        //       console.log(JSON.stringify(response.error()));
-        //   }
-        // });
-
-        m2xClient.devices.streamStats(DEVICE_ID,"temperature",function(response) {
+        m2xClient.devices.list(function(response) {
           if (response.isSuccess()) {
-         
-            console.log(response.json.stats);
-           
+            response.json.devices.forEach(function(device) {
+                arr.push(device.id)
+                this.setState({
+                    deviceId: arr
+                })
+              console.log(this.state.deviceId, arr);
+            }.bind(this));
           } else {
               console.log(JSON.stringify(response.error()));
           }
-        
-        });
+        }.bind(this));
 
-        m2xClient.devices.stream(DEVICE_ID,"temperature",function(response) {
-          if (response.isSuccess()) {
-         
-            console.log(response.json);
-           
-          } else {
-              console.log(JSON.stringify(response.error()));
-          }
-        });
+    }
 
-        m2xClient.devices.stream(DEVICE_ID,"temperature",function(response) {
-            if (response.isSuccess()) {
-           
-              console.log(response.json);
-             
-            } else {
-                console.log(JSON.stringify(response.error()));
-            }
-          });
-  }
+    getSensorData() {
+        var API_KEY = "f20ad4cd3e20e788c1a92aa130ffac72",
+        M2X = require("m2x"),
+        m2xClient = new M2X(API_KEY);
+        var newArr = []
+        // var DEVICE_ID= this.state.deviceId;
+        console.log(this.state.deviceId);
+        // var DEVICE_ID= "cb3eed668dcb1cdf4e3b42df2c4fa00e";
 
+        return this.state.deviceId.map((id) => {
+            return (
+                 m2xClient.devices.stream(id,"temperature",function(response) {
+                    if (response.isSuccess() && this.state.deviceInfo.length < 1 ) {
+                        var temp = `${response.json.name}: ${response.json.value} ${response.json.unit.symbol}`
+                        var obj = {id, img, temp}
+                        newArr.push(obj)
+                        console.log(newArr);
+                        console.log(response.json.name, response.json.value, response.json.unit.symbol);
 
-
+                        this.setState({
+                            deviceInfo: newArr 
+                        });
+               
+                    } else {
+                        console.log(JSON.stringify(response.error()));
+                    }
+                }.bind(this))
+              );
+        });  
+    }
 
   plantItems() {
     return this.state.plants.map((plant, index) => {
@@ -123,11 +134,30 @@ export default class PlantsContainer extends Component {
     });
   }
 
+  plantItems2() {
+    return this.state.deviceInfo.map((plant) => {
+      return (
+          <div>
+            <PlantItem2 
+                plant={plant}
+                />
+            </div>
+        );
+    });
+  }
+
   componentDidMount() {
-    console.log(this.getPlantItems());
     this.getPlantItems();
+    // this.getSensorData();
 }
 
+componentDidUpdate() {
+    this.getSensorData();
+}
+
+// componentWillUnmount() {
+//     this.getSensorData();
+// }
 
   
 
@@ -135,7 +165,7 @@ export default class PlantsContainer extends Component {
     const pStyle = {
         textAlign: 'center',
         alignContent: 'center',
-        alignItems: 'cemter',
+        alignItems: 'center',
         justifyContent: 'center'
       };
 
@@ -144,8 +174,8 @@ export default class PlantsContainer extends Component {
         <Row style={pStyle} key={this.state.plants.name} className='plant-items-wrapper'>
                 { this.plantItems() }
         </Row>
-        <Row>
-            { this.getPlantItems() }
+        <Row style={pStyle} key={this.state.plants.name} className='plant-items-wrapper'>
+                { this.plantItems2() }
         </Row>
         </div>
     );

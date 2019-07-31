@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import PageTitle from '../components/PageTitle';
 import { Link } from 'react-router-dom';
 
+import PlantsContainer from '../components/PlantsContainer';
+
 // styles
 import "../getStarted.scss";
 
@@ -33,7 +35,6 @@ class GetStarted extends Component {
                     <div className="get-started__instructions__setup">
                         <h1>Testing</h1>
                     </div>
-                
                 </div>    
             </div>
         )
