@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PageTitle from '../components/PageTitle';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col } from "reactstrap";
+import PlantsContainer from '../components/PlantsContainer';
 
 // styles
 import "../getStarted.scss";
@@ -22,14 +23,12 @@ class GetStarted extends Component {
                 </div>
 
                 <Container className="mb-5">
-                    <h1>Materials</h1>
+                    <h1>Materials and Cloud Services</h1>
                     <Row >
                         <Col className="col"> 
                             <ul>
                                 <ol>Raspberry Pi</ol>
-                                <ol>Sensor</ol>
-                                <ol>Pump</ol>
-                                <ol>Plants</ol>
+                                <ol>Sensors and Pump</ol>
                                 <ol>Heroku Account</ol>
                                 <ol>M2X Heroku Cloud Plug-In</ol>
                             </ul>
@@ -42,28 +41,18 @@ class GetStarted extends Component {
                                 <ol>
                                 <a href='https://www.heroku.com/'>https://www.heroku.com/</a>
                                 </ol>
+                                <ol>
+                                <a href='https://bit.ly/2GD14pE'>https://bit.ly/2GD14pE</a>
+                                </ol>
+                                <ol>
+                                <a href='https://elements.heroku.com/addons/m2x'>https://elements.heroku.com/addons/m2x</a>
+                                </ol>
                             </ul>
                         </Col>
                     </Row>
                        <h1>Setup Instructions</h1>
-                       <p>First...Next...Then...Lastly...</p>
+                       <p>This section is currently under construction</p>
                 </Container>
-                {/* <a className='get-started__instructions'>
-                   <div className='get-started__instructions__materials'>
-                        <h1>Materials</h1>
-                        <ul>
-                            <ol>Raspberry Pi</ol>
-                            <ol>Sensor</ol>
-                            <ol>Pump</ol>
-                            <ol>Plants</ol>
-                            <ol>Heroku Account</ol>
-                            <ol>M2X Heroku Cloud Plug-In</ol>
-                        </ul>
-                    </div> 
-                    <div className="get-started__instructions__setup">
-                        <h1>Testing</h1>
-                    </div>
-                </div>     */}
             </div>
         )
     }

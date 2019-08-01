@@ -5,7 +5,7 @@ import { useAuth0 } from "../react-auth0-spa";
 
 import PageTitle from '../components/PageTitle';
 import PlantsContainer from '../components/PlantsContainer';
-import PlantsContainer2 from '../components/PlantsContainer2';
+// import PlantsContainer2 from '../components/PlantsContainer2';
 
 // styles
 import "../Account.scss";
@@ -19,7 +19,7 @@ const Account = () => {
 
   return (
     <div className="account">
-        <PageTitle className='get-started__title' title="Let's Get Started!"/>
+        <PageTitle className='get-started__title' title="Monitor Your Plants!"/>
         <div className='home__content'>
             <h1>To view the health of your plants, click on their images below.</h1>
         </div>
@@ -29,8 +29,6 @@ const Account = () => {
       {/* <div>
         <PlantsContainer2 />
       </div> */}
- 
-
     </div>
   );
 };

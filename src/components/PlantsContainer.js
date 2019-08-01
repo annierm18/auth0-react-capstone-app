@@ -16,13 +16,7 @@ export default class PlantsContainer extends Component {
         pageTitle: "Welcome to my plants",
         isLoading: false,
         deviceInfo: [],
-        deviceArr: [
-            {
-                img: '',
-                id: '',
-                name: ''
-            }
-        ],
+        deviceArr: [],
         plants: [
             { 
                 id: 0,
@@ -62,63 +56,86 @@ export default class PlantsContainer extends Component {
 
         this.plantItems = this.plantItems.bind(this);
         this.plantItems2 = this.plantItems2.bind(this);
-        // this.getPlantItems = this.getPlantItems.bind(this);
   }
 
 
-  getPlantItems() {
-    var API_KEY = "f20ad4cd3e20e788c1a92aa130ffac72",
+    getPlantItems() {
+        var API_KEY = "f20ad4cd3e20e788c1a92aa130ffac72",
         M2X = require("m2x"),
         m2xClient = new M2X(API_KEY);
-        // var DEVICE_ID= "cb3eed668dcb1cdf4e3b42df2c4fa00e";
         var arr = []
 
         m2xClient.devices.list(function(response) {
           if (response.isSuccess()) {
             response.json.devices.forEach(function(device) {
-                arr.push(device.id)
-                this.setState({
-                    deviceId: arr
-                })
-              console.log(this.state.deviceId, arr);
-            }.bind(this));
-          } else {
-              console.log(JSON.stringify(response.error()));
-          }
-        }.bind(this));
+              
+              
+                var device_obj= {id: "", img, streams: []}
+                device_obj.id = device.id
 
-    }
-
-    getSensorData() {
-        var API_KEY = "f20ad4cd3e20e788c1a92aa130ffac72",
-        M2X = require("m2x"),
-        m2xClient = new M2X(API_KEY);
-        var newArr = []
-        // var DEVICE_ID= this.state.deviceId;
-        console.log(this.state.deviceId);
-        // var DEVICE_ID= "cb3eed668dcb1cdf4e3b42df2c4fa00e";
-
-        return this.state.deviceId.map((id) => {
-            return (
-                 m2xClient.devices.stream(id,"temperature",function(response) {
-                    if (response.isSuccess() && this.state.deviceInfo.length < 1 ) {
+             
+                m2xClient.devices.stream(device.id,"temperature",function(response) {
+                    if (response.isSuccess()) {
                         var temp = `${response.json.name}: ${response.json.value} ${response.json.unit.symbol}`
-                        var obj = {id, img, temp}
-                        newArr.push(obj)
-                        console.log(newArr);
+                        
+                        device_obj.streams.push(temp)
+                       
                         console.log(response.json.name, response.json.value, response.json.unit.symbol);
 
-                        this.setState({
-                            deviceInfo: newArr 
-                        });
                
                     } else {
                         console.log(JSON.stringify(response.error()));
+                    }   
+                    
+                })
+                m2xClient.devices.stream(device.id,"humidity",function(response) {
+                    if (response.isSuccess()) {
+                        console.log(response.json);
+                        var hum = `${response.json.name}: ${response.json.value} ${response.json.unit.symbol}`
+                        device_obj.streams.push(hum)
+                        console.log(device_obj.streams);
+                        console.log(response.json.name, response.json.value, response.json.unit.symbol);
+                
+                    } else {
+                        console.log(JSON.stringify(response.error()));
                     }
-                }.bind(this))
-              );
-        });  
+                })
+                m2xClient.devices.stream(device.id,"soil-moisture",function(response) {
+                    if (response.isSuccess()) {
+                        console.log(response.json);
+                        var soil = `${response.json.name}: ${response.json.value} %`
+                        device_obj.streams.push(soil)
+                        console.log(device_obj.streams);
+                        console.log(response.json.name, response.json.value, response.json.unit.symbol);
+                
+                    } else {
+                        console.log(JSON.stringify(response.error()));
+                    }
+                })
+                m2xClient.devices.stream(device.id,"visible-light",function(response) {
+                    if (response.isSuccess()) {
+                        console.log(response.json);
+                        var light = `${response.json.name}: ${response.json.value} ${response.json.unit.symbol}`
+                        device_obj.streams.push(light)
+                        console.log(device_obj.streams);
+                        console.log(response.json.name, response.json.value, response.json.unit.symbol);
+                
+                    } else {
+                        console.log(JSON.stringify(response.error()));
+                    }
+                })
+
+                arr.push(device_obj)
+        })
+        this.setState({
+            deviceArr: arr
+        });
+        console.log(this.state.deviceArr)
     }
+    }.bind(this));
+
+    }
+
 
   plantItems() {
     return this.state.plants.map((plant, index) => {
@@ -135,7 +152,7 @@ export default class PlantsContainer extends Component {
   }
 
   plantItems2() {
-    return this.state.deviceInfo.map((plant) => {
+    return this.state.deviceArr.map((plant) => {
       return (
           <div>
             <PlantItem2 
@@ -148,18 +165,7 @@ export default class PlantsContainer extends Component {
 
   componentDidMount() {
     this.getPlantItems();
-    // this.getSensorData();
-}
-
-componentDidUpdate() {
-    this.getSensorData();
-}
-
-// componentWillUnmount() {
-//     this.getSensorData();
-// }
-
-  
+}  
 
   render() {
     const pStyle = {

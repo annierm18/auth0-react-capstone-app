@@ -1,13 +1,10 @@
 .get-started {
     display: grid;
-    grid-template-columns: 50px [materials-s] 400px [materials-e instructions-s] 1fr [instructions-e] 50px;
-    grid-row: content-s/content-e;
-    grid-column: 1/-1;
 
     &__title {
-        text-align: center;
-        font-size: 40px;
-        grid-column: 1/-1;
+        font-size: 50px;
+        margin-bottom: 15px;
+        
     }
 
     &__description {
@@ -15,13 +12,11 @@
         font-size: 30px;
         padding-right: 100px;
         padding-left: 100px;
-        grid-column: 1/-1;
     }
 
     &__button {
         text-align: center;
         padding: 15px;
-        grid-column: 1/-1;
 
         &__start {
             text-decoration: none;
@@ -57,31 +52,6 @@
             box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5),
             0 0 0 1.5px rgba(255, 105, 180, 0.5);
         }
-    }
-
-    &__instructions {
-        display: grid;
-        grid-column: 1/-1;
-        text-align: center;
-
-        &__materials {
-            // grid-column: materials-s/materials-e;
-            text-align: center;
-            h1 {
-                font-size: 25px;
-            }
-        }
-
-        &__setup {
-            grid-column: instructions-s/instructions-e;
-            display: grid;
-            text-align: center;
-            align-self: center;
-
-            h1 {
-                font-size: 25px;
-            }
-        }   
     }
 }
 
