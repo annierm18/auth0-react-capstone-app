@@ -26,32 +26,12 @@ const Account = () => {
         <div>
         <PlantsContainer className='account__plant-items-wrapper'/>
         </div> 
-      <div>
+      {/* <div>
         <PlantsContainer2 />
-      </div>
+      </div> */}
  
 
     </div>
-   
-    // <Container className="mb-5">
-      
-    //   <Row className="align-items-center account-header mb-5 text-center text-md-left">
-    //     <Col md={2}>
-    //       <img
-    //         src={user.picture}
-    //         alt="Account"
-    //         className="rounded-circle img-fluid account-picture mb-3 mb-md-0"
-    //       />
-    //     </Col>
-    //     <Col md>
-    //       <h2>{user.name}</h2>
-    //       <p className="lead text-muted">{user.email}</p>
-    //     </Col>
-    //   </Row>
-    //   <Row>
-    //     <Highlight>{JSON.stringify(user, null, 2)}</Highlight>
-    //   </Row>
-    // </Container>
   );
 };
 

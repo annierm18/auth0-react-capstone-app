@@ -84,3 +84,28 @@
         }   
     }
 }
+
+.mb-5 {
+    h1, p {
+        text-align: center;
+        padding-top: 15px;
+    }
+
+    .col {
+        text-align: right;
+    }
+
+    .links {
+        ul {
+            padding-left: 0px;
+            ol {
+                padding-left: 0px;
+                text-align: left;
+
+                a {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
